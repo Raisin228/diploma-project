@@ -1,0 +1,257 @@
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #fff;
+  color: #111;
+  margin: 0;
+  padding: 0;
+}
+  
+/* шапка сайта */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  color: #fff;
+  padding: 0 40px;
+  height: 80px;
+  position: relative;
+  min-width: 0;
+}
+  
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  min-width: 0;
+}
+
+.player-disc {
+  width: 36px;
+  height: 36px;
+  margin-right: 25%;
+  margin-left: -10%;
+  display: block;
+  filter: brightness(0) invert(1);
+  padding: 0;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-btn {
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  opacity: 0.7;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.player-btn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.player-btn:active,
+.player-btn:focus {
+  opacity: 1;
+}
+  
+.logo img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+  
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.nav a:hover {
+  color: #e62e2d;
+}
+  
+.search-btn {
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>');
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 36px;
+  height: 36px;
+  background: #eee;
+  border-radius: 50%;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4"/><ellipse cx="12" cy="17" rx="7" ry="4"/></svg>');
+  background-size: 24px 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.main-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 40px 0 24px 0;
+  font-weight: 700;
+}
+
+  .hot-now {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .hot-now h2 {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .artists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+  }
+  .artist {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .artist img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 10px;
+  }
+  .artist-name {
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .artist-tags {
+    font-size: 0.85rem;
+    color: #888;
+  }
+  
+  .popular-tracks {
+    max-width: 1100px;
+    margin: 0 auto 60px auto;
+  }
+  .popular-tracks h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .tracks-columns {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+  .tracks-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .track {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f7f7f7;
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: box-shadow 0.2s;
+  }
+  .track:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .track img {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  .track-title {
+    font-weight: 600;
+  }
+  .track-artist {
+    font-size: 0.95rem;
+    color: #333;
+  }
+  .track-tags {
+    font-size: 0.8rem;
+    color: #888;
+  }
+  
+  .footer {
+    background: #111;
+    color: #ccc;
+    padding: 32px 0 16px 0;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+  .footer-links, .footer-social {
+    margin-bottom: 10px;
+  }
+  .footer a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer a:hover {
+    color: #e62e2d;
+  }
+

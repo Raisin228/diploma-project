@@ -1,37 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Stats</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    
+    <header class="header">
+      <div class="header-left">
+        <img class="player-disc" src="icons/music-player.svg" alt="Disc">
+        <div class="player-controls">
+          <button class="player-btn prev">
+            <img src="icons/previous.svg" alt="Previous">
+          </button>
+          <button class="player-btn play">
+            <img src="icons/play.svg" alt="Play">
+          </button>
+          <button class="player-btn next">
+            <img src="icons/next.svg" alt="Next">
+          </button>
+          <button class="player-btn like">
+            <img src="icons/heart.svg" alt="Like">
+          </button>
+        </div>
+      </div>
+      <div class="logo">
+        <img src="icons/logo.png" alt="Previous">
+      </div>
+      
+      <div class="header-right">
+        <nav class="nav">
+            <button class="search-btn"></button>
+            <a href="#">Home</a>
+            <a href="#">Live</a>
+            <a href="#">Music</a>
+            <a href="#">Charts</a>
+            <a href="#">Events</a>
+            <a href="#">Features</a>
+            <div class="profile-icon"></div>
+          </nav>
+      </div>
+    </header>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+
+
+
+
+
+
+    <main>
+      <h1 class="main-title">Music</h1>
+      <section class="hot-now">
+        <h2>Hot right now</h2>
+        <div class="artists">
+          <!-- Пример артиста -->
+          <div class="artist">
+            <img src="images/kanye.jpg" alt="Kanye West">
+            <div class="artist-name">Kanye West</div>
+            <div class="artist-tags">hip-hop · rap · hip hop</div>
+          </div>
+          <!-- Повторить для других артистов -->
+        </div>
+      </section>
+      <section class="popular-tracks">
+        <h2>Popular tracks</h2>
+        <div class="tracks-columns">
+          <div class="tracks-column">
+            <!-- Пример трека -->
+            <div class="track">
+              <img src="images/track1.jpg" alt="Track cover">
+              <div>
+                <div class="track-title">SEXY NUKIM (feat. RM of BTS)</div>
+                <div class="track-artist">Balming Tiger</div>
+                <div class="track-tags">hip-hop · alternative</div>
+              </div>
+            </div>
+            <!-- Повторить для других треков -->
+          </div>
+          <!-- Ещё две колонки -->
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#">About Last.fm</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Jobs</a>
+        <!-- и т.д. -->
+      </div>
+      <div class="footer-social">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+
+    </footer>
   </body>
 </html>
