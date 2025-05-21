@@ -126,18 +126,7 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+/* секция с артистами hot right now */
 .main-title {
   text-align: center;
   font-size: 2.5rem;
@@ -145,45 +134,87 @@ body {
   font-weight: 700;
 }
 
-  .hot-now {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .hot-now h2 {
-    font-size: 1.2rem;
-    margin-bottom: 24px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
+.hot-now {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hot-now h2 {
+  font-size: 1rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+.hot-now h2::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: #c0392b;
+  border-radius: 2px;
+  margin: 16px auto 0 auto;
+}
+
+.artists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 40px 32px;
+  justify-items: center;
+  align-items: start;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+@media (min-width: 1200px) {
   .artists {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 32px;
+    grid-template-columns: repeat(6, 1fr);
   }
-  .artist {
-    width: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .artist img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    margin-bottom: 10px;
-  }
-  .artist-name {
-    font-weight: 600;
-    margin-bottom: 2px;
-  }
-  .artist-tags {
-    font-size: 0.85rem;
-    color: #888;
-  }
-  
+}
+
+.artist {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.artist img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 10px;
+  border: 3px solid transparent;
+  transition: border 0.2s;
+}
+
+.artist img:focus,
+.artist img:active {
+  border: 3px solid #2563eb;
+  outline: none;
+}
+
+.artist-name {
+  font-weight: 700;
+  margin-bottom: 2px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.artist-tags {
+  font-size: 0.95rem;
+  color: #888;
+  text-align: center;
+}
+
+
+
+
+
   .popular-tracks {
     max-width: 1100px;
     margin: 0 auto 60px auto;
