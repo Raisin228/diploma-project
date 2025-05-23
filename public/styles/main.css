@@ -6,6 +6,10 @@ body {
   padding: 0;
 }
   
+
+
+
+
 /* шапка сайта */
 .header {
   display: flex;
@@ -215,74 +219,146 @@ body {
 
 
 
-  .popular-tracks {
-    max-width: 1100px;
-    margin: 0 auto 60px auto;
-  }
-  .popular-tracks h2 {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 24px;
-    font-weight: 600;
-  }
+/* секция popular tracks */
+.popular-tracks {
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  padding: 0 16px;
+}
+
+.popular-tracks h2 {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 0;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.popular-tracks h2::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: #c0392b;
+  border-radius: 2px;
+  margin: 16px 0 32px 0;
+}
+
+.tracks-columns {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.tracks-column {
+  flex: 0 1 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 260px;
+  max-width: 340px;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  min-height: 72px;
+  box-shadow: none;
+  border: none;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.track:hover {
+  background: #f7f7f7;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.track img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #eee;
+  flex-shrink: 0;
+}
+
+.track-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.track-artist {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.track-tags {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+@media (max-width: 1100px) {
   .tracks-columns {
-    display: flex;
-    gap: 32px;
-    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
   }
   .tracks-column {
-    flex: 1;
-    display: flex;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .popular-tracks h2 {
+    font-size: 1.5rem;
+  }
+  .tracks-columns {
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
+  }
+  .tracks-column {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
   }
   .track {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #f7f7f7;
-    border-radius: 8px;
-    padding: 8px 12px;
-    transition: box-shadow 0.2s;
-  }
-  .track:hover {
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 8px 8px;
+    min-height: 56px;
   }
   .track img {
-    width: 44px;
-    height: 44px;
-    border-radius: 6px;
-    object-fit: cover;
+    width: 36px;
+    height: 36px;
   }
-  .track-title {
-    font-weight: 600;
-  }
-  .track-artist {
-    font-size: 0.95rem;
-    color: #333;
-  }
-  .track-tags {
-    font-size: 0.8rem;
-    color: #888;
-  }
+}
   
-  .footer {
-    background: #111;
-    color: #ccc;
-    padding: 32px 0 16px 0;
-    text-align: center;
-    font-size: 0.95rem;
-  }
-  .footer-links, .footer-social {
-    margin-bottom: 10px;
-  }
-  .footer a {
-    color: #ccc;
-    margin: 0 10px;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer a:hover {
-    color: #e62e2d;
-  }
+.footer {
+  background: #111;
+  color: #ccc;
+  padding: 32px 0 16px 0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+.footer-links, .footer-social {
+  margin-bottom: 10px;
+}
+.footer a {
+  color: #ccc;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer a:hover {
+  color: #e62e2d;
+}
 
