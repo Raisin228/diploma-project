@@ -13,37 +13,51 @@ body {
 main {
   flex: 1 0 auto;
 }
-  
-
-
-
 
 /* шапка сайта */
 .header {
-  display: flex;
+  display: flex; /* Use flexbox */
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* Push left and right to edges */
   background: #000;
   color: #fff;
-  padding: 0 40px;
+  padding: 0 40px; /* Add horizontal padding back to header */
   height: 80px;
   position: relative;
   min-width: 0;
+  overflow-x: hidden;
 }
-  
+
 .header-left,
 .header-right {
   display: flex;
   align-items: center;
   z-index: 2;
-  min-width: 0;
+  min-width: 0; /* Allow shrinking */
+  flex-shrink: 1; /* Explicitly allow shrinking */
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute; /* Absolute positioning for centering */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1; /* Ensure logo is behind burger menu/nav */
+  margin: 0 20px; /* Add horizontal margin to create space around logo */
+}
+
+.logo img {
+  width: 90px;
+  height: auto;
+  display: block;
 }
 
 .player-disc {
   width: 36px;
   height: 36px;
-  margin-right: 25%;
-  margin-left: -10%;
+  margin: 0 12px 0 0; /* Adjusted margin */
   display: block;
   filter: brightness(0) invert(1);
   padding: 0;
@@ -53,6 +67,8 @@ main {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 1; /* Allow player controls to shrink */
+  min-width: 0; /* Ensure flex items inside can shrink below their content size */
 }
 
 .player-btn {
@@ -66,6 +82,8 @@ main {
   align-items: center;
   justify-content: center;
   padding: 0;
+  flex-shrink: 1; /* Allow buttons to shrink */
+  flex-basis: auto; /* Allow flex item to size based on content */
 }
 
 .player-btn img {
@@ -79,23 +97,11 @@ main {
 .player-btn:focus {
   opacity: 1;
 }
-  
-.logo img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 90px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-  
+
 .nav {
   display: flex;
   align-items: center;
   gap: 18px;
-  margin: 0 auto;
   z-index: 2;
 }
 
@@ -110,13 +116,13 @@ main {
 .nav a:hover {
   color: #e62e2d;
 }
-  
+
 .search-btn {
   width: 28px;
   height: 28px;
   background: none;
   border: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>'); /* Using data URL for search */
   background-size: 24px 24px;
   background-repeat: no-repeat;
   opacity: 0.8;
@@ -124,19 +130,162 @@ main {
 }
 
 .profile-icon {
-  width: 36px;
-  height: 36px;
-  background: #eee;
-  border-radius: 50%;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4"/><ellipse cx="12" cy="17" rx="7" ry="4"/></svg>');
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  background-image: url('../icons/profile.svg'); /* Path to profile icon */
   background-size: 24px 24px;
   background-position: center;
   background-repeat: no-repeat;
+  opacity: 0.8;
+  cursor: pointer;
 }
-  
 
+/* Burger menu styles for smaller screens */
+.burger {
+  display: none; /* Hidden by default */
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  z-index: 11;
+  margin-left: 12px;
+}
 
+.burger::before,
+.burger::after,
+.burger span {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  position: absolute;
+  left: 2px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
 
+.burger::before {
+  top: 4px;
+}
+
+.burger span {
+  top: 13px;
+}
+
+.burger::after {
+  top: 22px;
+}
+
+/* Hide default nav and show burger on smaller screens */
+@media (max-width: 1400px) { /* Increased breakpoint */
+  .nav {
+    display: none; /* Hide nav links by default */
+    flex-direction: column;
+    position: absolute;
+    top: 80px; /* Position below header */
+    right: 40px; /* Align to header padding */
+    width: 240px;
+    background: #000;
+    padding: 12px 0;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+    transform: translateY(-10px); /* Start slightly above final position */
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    align-items: flex-start; /* Align items to the left in dropdown */
+  }
+
+  .nav.open {
+    display: flex; /* Show nav when open */
+    opacity: 1;
+    pointer-events: auto; /* Allow interaction when open */
+    transform: translateY(0); /* Move to final position */
+  }
+
+  .burger {
+    display: block; /* Show burger button */
+  }
+
+  .header-right {
+    position: relative; /* Needed for absolute positioning of .nav */
+    z-index: 101; /* Ensure burger and right elements are above dropdown */
+  }
+
+  /* Styles for items within the dropdown */
+  .nav a, .nav .search-btn, .nav .profile-icon {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 12px 24px;
+      border-bottom: 1px solid #222; /* Separator */
+      box-sizing: border-box;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      background: none;
+  }
+
+  .nav a:last-child, .nav .search-btn:last-child, .nav .profile-icon:last-child {
+      border-bottom: none; /* No border for the last item */
+  }
+
+  /* Add text labels for icons in dropdown and style icons */
+    .nav .search-btn::before,
+    .nav .profile-icon::before {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-size: cover;
+        margin-right: 12px;
+        vertical-align: middle;
+        filter: brightness(0) invert(1); /* Ensure icons are white */
+    }
+
+    .nav .search-btn::before {
+        background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>');
+    }
+
+    .nav .profile-icon::before {
+         background-image: url('../icons/profile.svg');
+    }
+
+    .nav .search-btn::after {
+        content: 'Search';
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .nav .profile-icon::after {
+        content: 'Profile';
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+  /* Remove original icon styles in dropdown */
+    .nav .search-btn, .nav .profile-icon {
+        background: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+/* Add styles for the rest of the page content below the header */
 
 /* секция с артистами hot right now */
 .main-title {
@@ -314,19 +463,6 @@ main {
   color: #888;
 }
 
-@media (max-width: 1100px) {
-  .tracks-columns {
-    flex-direction: column;
-    gap: 24px;
-    align-items: center;
-  }
-  .tracks-column {
-    max-width: 100%;
-    min-width: 0;
-    width: 100%;
-  }
-}
-
 @media (max-width: 700px) {
   .popular-tracks h2 {
     font-size: 1.5rem;
@@ -349,7 +485,8 @@ main {
     height: 36px;
   }
 }
-  
+
+/* Footer styles */
 .footer {
   background: #181818;
   color: #ccc;
@@ -363,8 +500,6 @@ main {
 }
 
 .footer-top, .footer-bottom {
-  max-width: 1200px;
-  margin: 0 auto;
   width: 100%;
   padding-left: 40px;
   padding-right: 40px;
@@ -375,15 +510,14 @@ main {
 .footer-top {
   display: flex;
   justify-content: space-between;
-  padding: 48px 40px 32px 40px;
   gap: 32px;
+  flex-wrap: wrap;
+  padding: 48px 24px 32px 24px;
 }
 
 .footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   min-width: 170px;
+  flex: 1 1 0;
 }
 
 .footer-title {
@@ -499,13 +633,38 @@ main {
 }
 
 @media (max-width: 900px) {
-  .footer-top, .footer-bottom {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
   .footer-top {
     flex-direction: column;
     gap: 18px;
+    padding: 32px 8px 24px 8px;
   }
+  .footer-bottom, .footer-top {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px 4px 16px 4px;
+  }
+  .footer-col {
+    min-width: 0;
+    width: 100%;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 16px 4px 8px 4px;
+  }
+}
+
+/* Общие стили для предотвращения переполнения */
+* {
+  min-width: 0;
+  box-sizing: border-box;
 }
 
