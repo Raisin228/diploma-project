@@ -18,10 +18,12 @@ main {
 .header {
   display: flex; /* Use flexbox */
   align-items: center;
-  justify-content: space-between; /* Push left and right to edges */
+  /* Remove space-between for margin auto centering */
+  /* justify-content: space-between; */
   background: #000;
   color: #fff;
-  padding: 0 40px; /* Add horizontal padding back to header */
+  /* Remove horizontal padding from header */
+  padding: 0; /* Adjusted padding */
   height: 80px;
   position: relative;
   min-width: 0;
@@ -35,17 +37,18 @@ main {
   z-index: 2;
   min-width: 0; /* Allow shrinking */
   flex-shrink: 1; /* Explicitly allow shrinking */
+  flex-basis: auto; /* Allow initial size based on content, but can shrink */
 }
 
 .logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute; /* Absolute positioning for centering */
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 1; /* Ensure logo is behind burger menu/nav */
-  margin: 0 20px; /* Add horizontal margin to create space around logo */
+  margin: 0 auto; /* Use auto margins for flexbox centering */
+  flex-shrink: 0; /* Prevent logo from shrinking */
+  /* Remove transform for fine-tuning */
+  /* transform: translateX(-10px); */
 }
 
 .logo img {
@@ -327,6 +330,7 @@ main {
   align-items: start;
   margin: 0 auto;
   max-width: 1200px;
+  padding: 0 20px; /* Added horizontal padding for alignment */
 }
 
 @media (min-width: 1200px) {
@@ -380,7 +384,7 @@ main {
 .popular-tracks {
   max-width: 1200px;
   margin: 0 auto 60px auto;
-  padding: 0 16px;
+  padding: 0 20px; /* Adjusted horizontal padding for alignment */
 }
 
 .popular-tracks h2 {

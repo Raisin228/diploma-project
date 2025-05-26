@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Music Stats</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/search.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-left">
+        <img class="player-disc" src="icons/music-player.svg" alt="Disc">
+        <div class="player-controls">
+          <button class="player-btn prev">
+            <img src="icons/previous.svg" alt="Previous">
+          </button>
+          <button class="player-btn play">
+            <img src="icons/play.svg" alt="Play">
+          </button>
+          <button class="player-btn next">
+            <img src="icons/next.svg" alt="Next">
+          </button>
+          <button class="player-btn like">
+            <img src="icons/heart.svg" alt="Like">
+          </button>
+        </div>
+      </div>
+      <div class="logo"><a href="index.html"><img src="icons/logo.png" alt="Logo"></a></div>
+      <div class="header-right">
+        <button class="burger" aria-label="Open menu"></button>
+        <button class="search-btn"></button>
+        <nav class="nav">
+          <a href="#">Home</a>
+          <a href="#">Live</a>
+          <a href="#">Music</a>
+          <a href="#">Charts</a>
+          <a href="#">Events</a>
+          <a href="#">Features</a>
+        </nav>
+        <div class="profile-icon"></div>
+      </div>
+    </header>
+
+    <main>
+      <div class="search-page-content">
+        <h1 class="search-results-title">Search results for "never gonna give you up"</h1>
+
+        <div class="search-tabs">
+          <button class="tab-link active">Top Results</button>
+          <button class="tab-link">Artists</button>
+          <button class="tab-link">Albums</button>
+          <button class="tab-link">Tracks</button>
+        </div>
+
+        <div class="search-input-area">
+          <input type="text" class="search-input" placeholder="Search for artists, tracks, or albums">
+          <button class="search-icon"></button>
+          <button class="clear-search">&times;</button>
+        </div>
+
+        <section class="search-results-section artists-results">
+          <h2>Artists</h2>
+          <div class="artists-grid">
+            <!-- Artist result items will go here -->
+             <div class="artist-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Rick Astley">
+                <div class="artist-name">Rick Astley</div>
+                <div class="artist-listeners">1,751 listeners</div>
+            </div>
+             <div class="artist-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Rick Astley Tribute">
+                <div class="artist-name">Never Gonna Give You Up (8 Bit Remix Cover Version) [Tribute to Rick Astley]</div>
+                <div class="artist-listeners">62 listeners</div>
+            </div>
+             <div class="artist-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="J">
+                <div class="artist-name">Never Gonna Give You Up (J</div>
+                <div class="artist-listeners">43 listeners</div>
+            </div>
+             <div class="artist-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="RICK ASTLEY - never gonna give you up 2004 (white label club remix)">
+                <div class="artist-name">RICK ASTLEY - never gonna give you up 2004 (white label club remix)</div>
+                <div class="artist-listeners">142 listeners</div>
+            </div>
+             <div class="artist-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="scene">
+                <div class="artist-name">"Never Gonna Give You Up" scene</div>
+                <div class="artist-listeners">87 listeners</div>
+            </div>
+             <div class="artist-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Side">
+                <div class="artist-name">"Never Gonna Give You Up" (1987 VS 2022) Side</div>
+                <div class="artist-listeners">9 listeners</div>
+            </div>
+             <div class="artist-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="You Up">
+                <div class="artist-name">Never Gonna Give You Up</div>
+                <div class="artist-listeners">69 listeners</div>
+            </div>
+             <div class="artist-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="RICK ASTLEY">
+                <div class="artist-name">NEVER GONNA GIVE YOU UP - RICK ASTLEY</div>
+                <div class="artist-listeners">21 listeners</div>
+            </div>
+          </div>
+           <a href="#" class="more-link">More artists</a>
+        </section>
+
+        <section class="search-results-section albums-results">
+          <h2>Albums</h2>
+          <div class="albums-grid">
+            <!-- Album result items will go here -->
+             <div class="album-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/6ee8907c4e09b07578351195715e947a.jpg" alt="NEVER GONNA GIVE YOU UP">
+                <div class="album-name">NEVER GONNA GIVE YOU UP</div>
+                <div class="album-artist">MAC BEEZ</div>
+            </div>
+             <div class="album-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/6ee8907c4e09b07578351195715e947a.jpg" alt="Never Gonna Give You Up">
+                <div class="album-name">Never Gonna Give You Up</div>
+                <div class="album-artist">Formal Chicken</div>
+            </div>
+             <div class="album-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/6ee8907c4e09b07578351195715e947a.jpg" alt="Never Gonna Give You Up">
+                <div class="album-name">Never Gonna Give You Up</div>
+                <div class="album-artist">Radioclub</div>
+            </div>
+             <div class="album-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Never Gonna Give You Up">
+                <div class="album-name">Never Gonna Give You Up</div>
+                <div class="album-artist">Rick Astley</div>
+            </div>
+             <div class="album-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/6ee8907c4e09b07578351195715e947a.jpg" alt="The Animal In Me">
+                <div class="album-name">The Animal In Me</div>
+                <div class="album-artist">Never Gonna Give You Up</div>
+            </div>
+             <div class="album-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/6ee8907c4e09b07578351195715e947a.jpg" alt="Hazlett">
+                <div class="album-name">Never Gonna Give You Up</div>
+                <div class="album-artist">Hazlett</div>
+            </div>
+             <div class="album-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/6ee8907c4e09b07578351195715e947a.jpg" alt="Smash Mouth">
+                <div class="album-name">Never Gonna Give You Up</div>
+                <div class="album-artist">Smash Mouth</div>
+            </div>
+             <div class="album-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/6ee8907c4e09b07578351195715e947a.jpg" alt="Lofi Remix">
+                <div class="album-name">Never Gonna Give You Up (Lofi Remix)</div>
+                <div class="album-artist">Peng Lexer</div>
+            </div>
+          </div>
+           <a href="#" class="more-link">More albums</a>
+        </section>
+
+         <section class="search-results-section tracks-results">
+          <h2>Tracks</h2>
+          <div class="tracks-list">
+            <!-- Track result items will go here -->
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up</div>
+                    <div class="track-artist">Rick Astley</div>
+                </div>
+                <div class="track-duration">3:39</div>
+            </div>
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up</div>
+                    <div class="track-artist">The Black Keys</div>
+                </div>
+                <div class="track-duration">3:39</div>
+            </div>
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up</div>
+                    <div class="track-artist">Barry White</div>
+                </div>
+                <div class="track-duration">4:09</div>
+            </div>
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up</div>
+                    <div class="track-artist">Cake</div>
+                </div>
+                <div class="track-duration">3:50</div>
+            </div>
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up</div>
+                    <div class="track-artist">Lisa Stansfield</div>
+                </div>
+                <div class="track-duration">3:33</div>
+            </div>
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up</div>
+                    <div class="track-artist">Barry White</div>
+                </div>
+                <div class="track-duration">7:58</div>
+            </div>
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up - 7" Mix</div>
+                    <div class="track-artist">Rick Astley</div>
+                </div>
+                <div class="track-duration">3:22</div>
+            </div>
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up (Japanese Version)</div>
+                    <div class="track-artist">Caitlin Myers</div>
+                </div>
+                <div class="track-duration">4:07</div>
+            </div>
+             <div class="track-result-item">
+                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png" alt="Track cover">
+                <div class="track-info">
+                    <div class="track-title">Never Gonna Give You Up</div>
+                    <div class="track-artist">Barry White</div>
+                </div>
+                <div class="track-duration">3:39</div>
+            </div>
+          </div>
+           <a href="#" class="more-link">More tracks</a>
+        </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-col">
+          <div class="footer-title">Company</div>
+          <a href="#">About Last.fm</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Jobs</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-title">Help</div>
+          <a href="#">Track My Music</a>
+          <a href="#">Community Support</a>
+          <a href="#">Community Guidelines</a>
+          <a href="#">Help</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-title">Goodies</div>
+          <a href="#">Download Scrobbler</a>
+          <a href="#">Developer API</a>
+          <a href="#">Free Music Downloads</a>
+          <a href="#">Merchandise</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-title">Account</div>
+          <a href="#">Inbox</a>
+          <a href="#">Settings</a>
+          <a href="#">Last.fm Pro</a>
+          <a href="#">Logout</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-title">Follow Us</div>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <div class="footer-lang">
+            <span class="active">English</span>
+            <span>Deutsch</span>
+            <span>Español</span>
+            <span>Français</span>
+            <span>Italiano</span>
+            <span>日本語</span>
+            <span>Polski</span>
+            <span>Português</span>
+            <span>Русский</span>
+            <span>Svenska</span>
+            <span>Türkçe</span>
+            <span>简体中文</span>
+          </div>
+          <div class="footer-tz">Time zone: <b>Europe/Moscow</b></div>
+          <div class="footer-copyright">
+            CBS Interactive © 2022 Last.fm Ltd. All rights reserved ·
+            <a href="#">Terms of Use</a> ·
+            <a href="#">Privacy Policy</a> ·
+            <a href="#">Legal Policies</a> ·
+            <a href="#">Cookies Policy</a> ·
+            <a href="#">Do Not Sell My Personal Information</a>
+            <br>
+            · <a href="#">Jobs at ViacomCBS</a> ·
+            <a href="#">Last.fm Music</a>
+          </div>
+        </div>
+        <div class="footer-bottom-right">
+          <div>Audioscrobbler</div>
+          <img src="icons/logo_last_fm_min.png" alt="Last.fm logo" class="footer-logo">
+        </div>
+      </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const burger = document.querySelector('.burger');
+      const nav = document.querySelector('.nav');
+      burger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nav.classList.toggle('open');
+      });
+      document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          nav.classList.remove('open');
+        }s
+      });
+    });
+    </script>
+  </body>
+</html> 
