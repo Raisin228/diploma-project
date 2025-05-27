@@ -2,51 +2,50 @@ const MELODY_API_KEY = '745385fbfeddcc339e341dd309fc650d';
 const MELODY_API_BASE = 'https://ws.audioscrobbler.com/2.0/';
 
 /**
- * Makes an API request to the music service
- * @param {string} endpoint - API endpoint name
- * @param {Object} [options={}] - Additional parameters
- * @returns {Promise<any>} - Parsed JSON response
- * @throws {Error} - If response status is not ok
+ * Handles API communication
+ * @param {string} method - API method name
+ * @param {Object} [params={}] - Request parameters
+ * @returns {Promise<any>} - API response
  */
-async function makeApiRequest(endpoint, options = {}) {
-  const requestUrl = new URL(MELODY_API_BASE);
-  Object.entries({ method: endpoint, api_key: MELODY_API_KEY, format: 'json', ...options })
-    .forEach(([key, value]) => value != null && requestUrl.searchParams.set(key, String(value)));
-  const response = await fetch(requestUrl);
-  if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+async function callApi(method, params = {}) {
+  const url = new URL(MELODY_API_BASE);
+  Object.entries({ method, api_key: MELODY_API_KEY, format: 'json', ...params })
+    .forEach(([key, value]) => value != null && url.searchParams.set(key, String(value)));
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`API Error: ${response.status}`);
   return response.json();
 }
 
 /**
  * Fetches trending artists
- * @param {number} [count=12] - Number of artists to return
- * @returns {Promise<Artist[]>} - Array of trending artists
+ * @param {number} [limit=12] - Number of artists to return
+ * @returns {Promise<Array>} - Array of trending artists
  */
-async function fetchTrendingArtists(count = 12) {
-  const response = await makeApiRequest('chart.gettopartists', { limit: count });
+async function getTrendingArtists(limit = 12) {
+  const response = await callApi('chart.gettopartists', { limit });
   return response.artists?.artist || [];
 }
 
 /**
  * Fetches popular tracks
- * @param {number} [count=18] - Number of tracks to return
- * @returns {Promise<Track[]>} - Array of popular tracks
+ * @param {number} [limit=18] - Number of tracks to return
+ * @returns {Promise<Array>} - Array of popular tracks
  */
-async function fetchPopularTracks(count = 18) {
-  const response = await makeApiRequest('chart.gettoptracks', { limit: count });
+async function getPopularTracks(limit = 18) {
+  const response = await callApi('chart.gettoptracks', { limit });
   return response.tracks?.track || [];
 }
 
 /**
  * Fetches artist tags
- * @param {string} artistName - Artist name
- * @param {number} [count=3] - Number of tags to return
- * @returns {Promise<Tag[]>} - Array of artist tags
+ * @param {string} artist - Artist name
+ * @param {number} [limit=3] - Number of tags to return
+ * @returns {Promise<Array>} - Array of artist tags
  */
-async function fetchArtistTags(artistName, count = 3) {
+async function getArtistTags(artist, limit = 3) {
   try {
-    const { toptags } = await makeApiRequest('artist.gettoptags', { artist: artistName });
-    return (toptags?.tag || []).filter(tag => tag.url).slice(0, count);
+    const { toptags } = await callApi('artist.gettoptags', { artist });
+    return (toptags?.tag || []).filter(tag => tag.url).slice(0, limit);
   } catch {
     return [];
   }
@@ -54,53 +53,103 @@ async function fetchArtistTags(artistName, count = 3) {
 
 /**
  * Fetches track tags
- * @param {string} artistName - Artist name
- * @param {string} trackName - Track name
- * @param {number} [count=3] - Number of tags to return
- * @returns {Promise<Tag[]>} - Array of track tags
+ * @param {string} artist - Artist name
+ * @param {string} track - Track name
+ * @param {number} [limit=3] - Number of tags to return
+ * @returns {Promise<Array>} - Array of track tags
  */
-async function fetchTrackTags(artistName, trackName, count = 3) {
+async function getTrackTags(artist, track, limit = 3) {
   try {
-    const { toptags } = await makeApiRequest('track.gettoptags', { artist: artistName, track: trackName });
-    return (toptags?.tag || []).filter(tag => tag.url).slice(0, count);
+    const { toptags } = await callApi('track.gettoptags', { artist, track });
+    return (toptags?.tag || []).filter(tag => tag.url).slice(0, limit);
   } catch {
     return [];
   }
 }
 
 /**
- * Renders trending artists section
- * @param {Artist[]} artists - Array of artists
+ * Creates HTML element for trending artist
+ * @param {Object} data - Artist data
+ * @returns {HTMLElement} - Artist element
  */
-async function renderTrendingArtists(artists) {
+function createTrendingArtistElement(data) {
+  const item = document.createElement('div');
+  item.className = 'hot-right-now__item';
+  
+  const link = document.createElement('a');
+  link.className = 'hot-right-now__media';
+  link.href = data.url || '#';
+  
+  const image = document.createElement('img');
+  image.className = 'hot-right-now__thumb';
+  image.loading = 'eager';
+  image.width = 120;
+  image.height = 120;
+  image.src = data.image?.[2]?.['#text'] || 'icons/default-artist.png';
+  image.alt = data.name;
+  
+  const name = document.createElement('p');
+  name.className = 'hot-right-now__name';
+  name.textContent = data.name;
+  
+  link.append(image, name);
+  item.append(link);
+  return item;
+}
+
+/**
+ * Creates HTML element for popular track
+ * @param {Object} data - Track data
+ * @returns {HTMLElement} - Track element
+ */
+function createPopularTrackElement(data) {
+  const item = document.createElement('div');
+  item.className = 'popular-tracks__item';
+  
+  const link = document.createElement('a');
+  link.className = 'popular-tracks__media';
+  link.href = data.url || '#';
+  
+  const image = document.createElement('img');
+  image.className = 'popular-tracks__thumb';
+  image.loading = 'lazy';
+  image.src = data.image?.[2]?.['#text'] || 'icons/default-track.png';
+  image.alt = data.name;
+  
+  link.append(image);
+  item.append(link);
+
+  const info = document.createElement('div');
+  info.className = 'popular-tracks__info';
+  
+  const title = document.createElement('a');
+  title.className = 'popular-tracks__track';
+  title.textContent = data.name;
+  title.href = data.url || '#';
+  
+  const artist = document.createElement('a');
+  artist.className = 'popular-tracks__artist';
+  artist.textContent = data.artist?.name || '';
+  artist.href = data.artist?.url || '#';
+  
+  info.append(title, artist);
+  item.append(info);
+  return item;
+}
+
+/**
+ * Updates trending artists section
+ * @param {Array} artists - Array of artists
+ */
+async function updateTrendingArtists(artists) {
   const container = document.querySelector('.hot-right-now__grid');
   container.innerHTML = '';
   
   for (const artist of artists) {
-    const item = document.createElement('div');
-    item.className = 'hot-right-now__item';
-    
-    const link = document.createElement('a');
-    link.className = 'hot-right-now__media';
-    link.href = artist.url || '#';
-    
-    const image = document.createElement('img');
-    image.className = 'hot-right-now__thumb';
-    image.loading = 'eager';
-    image.width = 120;
-    image.height = 120;
-    image.src = artist.image?.[2]?.['#text'] || 'icons/default-artist.png';
-    image.alt = artist.name;
-    
-    const name = document.createElement('p');
-    name.className = 'hot-right-now__name';
-    name.textContent = artist.name;
-    
-    link.append(image, name);
-    item.append(link);
+    const item = createTrendingArtistElement(artist);
     container.append(item);
 
-    fetchArtistTags(artist.name).then(tags => {
+    getArtistTags(artist.name).then(tags => {
       if (!tags.length) return;
       const tagContainer = document.createElement('p');
       tagContainer.className = 'hot-right-now__tags';
@@ -117,10 +166,10 @@ async function renderTrendingArtists(artists) {
 }
 
 /**
- * Renders popular tracks section
- * @param {Track[]} tracks - Array of tracks
+ * Updates popular tracks section
+ * @param {Array} tracks - Array of tracks
  */
-async function renderPopularTracks(tracks) {
+async function updatePopularTracks(tracks) {
   const container = document.querySelector('.popular-tracks__columns');
   container.innerHTML = '';
   
@@ -134,41 +183,10 @@ async function renderPopularTracks(tracks) {
   for (let i = 0; i < tracks.length; i++) {
     const track = tracks[i];
     const column = columns[i % 3];
-    
-    const item = document.createElement('div');
-    item.className = 'popular-tracks__item';
-    
-    const link = document.createElement('a');
-    link.className = 'popular-tracks__media';
-    link.href = track.url || '#';
-    
-    const image = document.createElement('img');
-    image.className = 'popular-tracks__thumb';
-    image.loading = 'lazy';
-    image.src = track.image?.[2]?.['#text'] || 'icons/default-track.png';
-    image.alt = track.name;
-    
-    link.append(image);
-    item.append(link);
-
-    const info = document.createElement('div');
-    info.className = 'popular-tracks__info';
-    
-    const title = document.createElement('a');
-    title.className = 'popular-tracks__track';
-    title.textContent = track.name;
-    title.href = track.url || '#';
-    
-    const artist = document.createElement('a');
-    artist.className = 'popular-tracks__artist';
-    artist.textContent = track.artist?.name || '';
-    artist.href = track.artist?.url || '#';
-    
-    info.append(title, artist);
-    item.append(info);
+    const item = createPopularTrackElement(track);
     column.append(item);
 
-    fetchTrackTags(track.artist?.name, track.name).then(tags => {
+    getTrackTags(track.artist?.name, track.name).then(tags => {
       if (!tags.length) return;
       const tagContainer = document.createElement('p');
       tagContainer.className = 'popular-tracks__tags';
@@ -179,26 +197,26 @@ async function renderPopularTracks(tracks) {
         tagLink.textContent = tag.name;
         tagContainer.append(tagLink);
       });
-      info.append(tagContainer);
+      item.querySelector('.popular-tracks__info').append(tagContainer);
     });
   }
 }
 
 /**
- * Initializes the home page
+ * Initializes home page
  */
-async function initializeHomePage() {
+async function setupHomePage() {
   try {
     const [artists, tracks] = await Promise.all([
-      fetchTrendingArtists(),
-      fetchPopularTracks()
+      getTrendingArtists(),
+      getPopularTracks()
     ]);
-    await renderTrendingArtists(artists);
-    await renderPopularTracks(tracks);
+    await updateTrendingArtists(artists);
+    await updatePopularTracks(tracks);
   } catch (error) {
     console.error('Initialization error:', error);
   }
 }
 
-// Initialize when DOM is loaded
-window.addEventListener('DOMContentLoaded', initializeHomePage);
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', setupHomePage);
